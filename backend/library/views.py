@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import LibraryCard
+from .serializers import LibraryCardSerializer
 
-# Create your views here.
+
+class LibraryCardViewSet(ModelViewSet):
+    queryset = LibraryCard.objects.all()
+    serializer_class = LibraryCardSerializer
