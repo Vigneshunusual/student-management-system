@@ -1,0 +1,5 @@
+$kind: http-request
+name: Get department with <id>
+url: ""
+method: GET
+order: 4109496841818984
