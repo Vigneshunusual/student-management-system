@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'courses',
     'library',
     'django_filters',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +156,14 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ],
 
-    'EXCEPTION_HANDLER': 'config.exceptions.custom_exception_handler',    
-    
+    'EXCEPTION_HANDLER': 'config.exceptions.custom_exception_handler',   
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', 
+  
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Student Management System API',
+    'DESCRIPTION': 'API for managing students, departments, courses, library cards, and authentication.',
+    'VERSION': '1.0.0',
 }
