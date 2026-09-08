@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'departments',
     'courses',
     'library',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -145,9 +146,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
-    'DEFAULT_PAGINATION_CLASS': 
-        'config.pagination.CustomPagination',
-        'PAGE_SIZE': 10,
-        
+    'DEFAULT_PAGINATION_CLASS': 'config.pagination.CustomPagination',
+
+    'PAGE_SIZE': 10,
+
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],    
     
 }

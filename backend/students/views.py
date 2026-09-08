@@ -4,11 +4,15 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Student
 from .serializers import StudentSerializer
 from accounts.permissions import IsOwnerOrAdmin
-
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import StudentFilter
 
 class StudentViewSet(ModelViewSet):
     serializer_class = StudentSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+    # filterset_fields = ['department', 'student_id','enrollment_date']
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = StudentFilter
 
     def get_queryset(self):
         user = self.request.user
