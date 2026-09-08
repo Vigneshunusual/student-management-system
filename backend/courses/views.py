@@ -9,3 +9,4 @@ class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     permission_classes = [IsAdminOrReadOnly]
     filterset_fields = ['credits', 'code', 'name']
+    search_fields = ['name', 'code']

@@ -6,13 +6,16 @@ from .serializers import StudentSerializer
 from accounts.permissions import IsOwnerOrAdmin
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import StudentFilter
+from rest_framework.filters import SearchFilter
 
 class StudentViewSet(ModelViewSet):
     serializer_class = StudentSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
     # filterset_fields = ['department', 'student_id','enrollment_date']
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = StudentFilter
+    search_fields = ['student_id', 'phone']
+    
 
     def get_queryset(self):
         user = self.request.user
