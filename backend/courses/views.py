@@ -5,7 +5,7 @@ from accounts.permissions import IsAdminOrReadOnly
 
 
 class CourseViewSet(ModelViewSet):
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
     permission_classes = [IsAdminOrReadOnly]
     filterset_fields = ['credits', 'code', 'name']

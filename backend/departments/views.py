@@ -6,6 +6,6 @@ from accounts.permissions import IsAdminOrReadOnly
 
 
 class DepartmentViewSet(ModelViewSet):
-    queryset = Department.objects.all()
+    queryset = Department.objects.all().order_by('id')
     serializer_class = DepartmentSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]    
