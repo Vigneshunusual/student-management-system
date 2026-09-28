@@ -30,6 +30,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             'enrollment_date',
         ]
 
+
+        
+
     @transaction.atomic
     def create(self, validated_data):
         student_data = {

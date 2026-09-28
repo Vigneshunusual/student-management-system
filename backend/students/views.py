@@ -20,15 +20,9 @@ class StudentViewSet(ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        # Admin → see all students
-        if (
-            user.is_superuser
-            or user.groups.filter(name='Admin').exists()
-        ):
-            return Student.objects.all()
-
-        # Student → see only their own record
-        return Student.objects.filter(user=user)
+        if (user.is_superuser or user.groups.filter(name='Admin').exists()):
+            return Student.objects.select_related('user','department').prefetch_related('courses')
+            return Student.objects.select_related('user','department').prefetch_related('courses').filter(user=user)
 
     def create(self, request, *args, **kwargs):
         if not (
@@ -59,3 +53,4 @@ class StudentViewSet(ModelViewSet):
             )
 
         return super().destroy(request, *args, **kwargs)
+
