@@ -22,7 +22,7 @@ class StudentViewSet(ModelViewSet):
 
         if (user.is_superuser or user.groups.filter(name='Admin').exists()):
             return Student.objects.select_related('user','department').prefetch_related('courses')
-            return Student.objects.select_related('user','department').prefetch_related('courses').filter(user=user)
+        return Student.objects.select_related('user','department').prefetch_related('courses').filter(user=user)
 
     def create(self, request, *args, **kwargs):
         if not (
